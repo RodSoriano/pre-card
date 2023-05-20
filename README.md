@@ -1,5 +1,4 @@
 # Validation Test
-## Summary
 This is a project designed into a two-part system which consist in the back-end API and the front-end APP. The application is a tool for you to validate different types of input of a credit card sent by the end-user.
 
 You can validate:
@@ -11,14 +10,21 @@ You can validate:
 * Card holder can't be special characters or digits.
 
 ## Requirements
-For the API on your local machine you will need:
-* PHP
-* Composer
+For the API you will require to have:
+* php 8.2^
+* composer 2.5^
 
-For the Front-End you will also need:
-* NPM
+Keep in mind that in order to run a Laravel application you will also need to install some php extensions running this command.
 
-On Ubuntu you can check your version with.
 ```
-<appName> --version
+sudo apt install openssl php-bcmath php-curl php-json php-mbstring php-mysql php-tokenizer php-xml php-zip
+```
+
+For the Front-End you also need:
+* npm 9.6^
+
+Once installed on Ubuntu you can check the version of the package doing.
+
+```
+<package> --version
 ```
