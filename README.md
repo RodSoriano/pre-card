@@ -1,7 +1,7 @@
 # Validation Test
-This is a project designed into a two-part system which consist in the back-end API and the front-end APP. The application is a tool for you to validate different types of input of a credit card sent by the end-user.
+This is a project designed as a two-part system consisting of the back-end API and the front-end APP. The application is a tool for you to validate different types of input of a credit card sent by the end-user.
 
-The API holds a single POST endpoint
+The API has a single POST endpoint.
 * http://localhost:8000/api/v1/payment
 
 This enpoint will validate:
@@ -13,11 +13,11 @@ This enpoint will validate:
 * Card holder can't be special characters or digits.
 
 ## Requirements
-For the API you will require to have:
+For the API, you will require to have:
 * php 8.2^
 * composer 2.5^
 
-Keep in mind that in order to run a Laravel application you will also need to install some php extensions running this command.
+Keep in mind that in order to run a Laravel application, you will also need to install some PHP extensions by running this command.
 
 ```
 sudo apt install openssl php-bcmath php-curl php-json php-mbstring php-mysql php-tokenizer php-xml php-zip
@@ -26,7 +26,7 @@ sudo apt install openssl php-bcmath php-curl php-json php-mbstring php-mysql php
 For the Front-End you also need:
 * npm 9.6^
 
-Once installed you can check the version of the package doing.
+Once installed you can check the version of the package by doing.
 
 ```
 <package> --version
@@ -36,18 +36,18 @@ First we will need to clone the project.
 ```
 git clone git@github.com:RodSoriano/validation-test.git
 ```
-Once clone go into the backend-api directory.
+Once done, go into the backend-api directory.
 ```
 cd validation-test/backend-api
 ```
-In here we will need to install the Laravel project using composer.
+Here, we will need to install the Laravel project using composer.
 ```
 composer install
 ```
 
-Now we have installed the backend-api, we will continue to install the front-end side.
+Now we have installed the backend-api, we will continue with the front-end side.
 
-From where we are we go into the root directoy doing.
+From where we are, we go into the root directory doing.
 ```
 cd ..
 ```
@@ -55,16 +55,16 @@ Now we go into the frontend-app folder.
 ```
 cd frontend-app
 ```
-Here we install the application using npm.
+Here, we install the application using npm.
 ```
 npm install
 ```
-Now we have install our whole application.
+Now our whole application has been installed.
 
 ## Live Test
-In order to run and try our application we can use the the development servers integrated within each side of the application.
+In order to run and try our application we can use the development server integrated within each side of the application.
 
-First go into the "backend-api" directory, once in there you run.
+First, go into the "backend-api" directory, once in there you run.
 ```
 php artisan serve
 ```
@@ -74,7 +74,7 @@ Then we need to go into our "frontend-app" directory, once in there you run.
 ```
 npm run dev
 ```
-Once done our front-end is running on http://localhost:5173
+Our front-end is now running on http://localhost:5173
 
 Now you can try the application.
 
