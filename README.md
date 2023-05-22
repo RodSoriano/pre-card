@@ -36,7 +36,7 @@ Once installed you can check the version of the package by doing.
 ## Installation
 First we will need to clone the project.
 ```
-git clone git@github.com:RodSoriano/validation-test.git
+git clone https://github.com/RodSoriano/validation-test.git
 ```
 Once done, go into the backend-api directory.
 ```
