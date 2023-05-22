@@ -22,6 +22,8 @@ Keep in mind that in order to run a Laravel application, you will also need to i
 ```
 sudo apt install openssl php-bcmath php-curl php-json php-mbstring php-mysql php-tokenizer php-xml php-zip
 ```
+New PHP versions come with some extensions integrated within the core package. If you encounter any errors during the project installation, such as "missing extension," please check your "php.ini" configuration file. In the "php.ini" file, search for the keyword "extension" and look for the extensions you need. Uncomment them, and you will be ready to proceed. If you are using Windows, another option is to download the DLL file from the official PHP website. Here you can find instructions with more details for installation (As an example here we are installing the "zip" extension).
+https://www.php.net/manual/en/zip.installation.php
 
 For the Front-End you also need:
 * npm 9.6^
@@ -77,5 +79,3 @@ npm run dev
 Our front-end is now running on http://localhost:5173
 
 Now you can try the application.
-
-If you have any questions, feedback or suggestions please feel free to contact me.
