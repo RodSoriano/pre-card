@@ -66,16 +66,20 @@ class CreateCardPaymentRequest extends FormRequest
 
     private function expirationDateValidate(): bool
     {
-        [$moth, $year] = explode('/', date('m/y'), 2);
-        [$inputMoth, $inputYear] = explode('/', $this->expiration_date, 2);
+        [$month, $year] = explode('/', date('m/y'), 2);
+        [$inputMonth, $inputYear] = explode('/', $this->expiration_date, 2);
         $isValid = true;
+
+        if ($month > 12) {
+            $isValid = false;
+        }
 
         if ($inputYear < $year) {
             $isValid = false;
         }
 
         if ($inputYear === $year) {
-            if ($inputMoth <= $moth) {
+            if ($inputMonth <= $month) {
                 $isValid = false;
             }
         }
