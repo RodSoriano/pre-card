@@ -10,6 +10,7 @@ import { Button, Col, Form, Row } from 'reactstrap'
 
 const PaymentForm = () => {
   const [status, setStatus] = useState(false)
+  const [response, setResponse] = useState('')
 
   const [cvv, setCvv] = useState('')
   const [cvvLength, setCvvLength] = useState(3)
@@ -110,9 +111,11 @@ const PaymentForm = () => {
     try {
       const postResponse = await axios.post(`${localHost}/api/v1/payment`, dataToSend)
       setStatus(postResponse.status)
+      setResponse(postResponse)
     } catch (err) {
       if (err.response) {
         setStatus(err.response.status)
+        setResponse(err.response)
       }
     } finally {
       setTimeout(() => {
@@ -182,9 +185,7 @@ const PaymentForm = () => {
         </Row>
       </Form>
 
-      {status && (
-        <CustomAlert params={alertStatus()} />
-      )}
+      {status && (<CustomAlert params={alertStatus()} />)}
     </>
   )
 }
