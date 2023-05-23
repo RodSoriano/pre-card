@@ -1,9 +1,11 @@
 import './styles.css'
 import axios from 'axios'
 import { useState } from 'react'
-import CustomAlert from './CustomAlert'
-import { colors, message } from './alertOptions'
-import { Button, Col, Form, Input, Label, Row, InputGroup } from 'reactstrap'
+import FormInput from './Payment/FormInput'
+import CustomInputGroup from './Payment/CustomInputGroup'
+import CustomAlert from './Payment/CustomAlert'
+import { colors, message } from './Payment/alertOptions'
+import { Button, Col, Form, Row } from 'reactstrap'
 
 const PaymentForm = () => {
   const [status, setStatus] = useState(false)
@@ -65,6 +67,7 @@ const PaymentForm = () => {
         break;
       default:
         setCvvLength(3)
+        break;
     }
   }
 
@@ -96,16 +99,16 @@ const PaymentForm = () => {
     }
 
     try {
-      const postResponse = await axios.post(`${localHost}/api/v1/payment`, dataToSend);
-      setStatus(postResponse.status);
+      const postResponse = await axios.post(`${localHost}/api/v1/payment`, dataToSend)
+      setStatus(postResponse.status)
     } catch (err) {
       if (err.response) {
-        setStatus(err.response.status);
+        setStatus(err.response.status)
       }
     } finally {
       setTimeout(() => {
-        setStatus('');
-      }, 5000);
+        setStatus('')
+      }, 5000)
     }
   }
 
@@ -121,75 +124,42 @@ const PaymentForm = () => {
   return (
     <>
       <Form onSubmit={handleOnSubmitt}>
-        <Row>
-          <Col>
-            <Label>
-              Card Number
-            </Label>
-            <Input
-              name='card_number'
-              value={cardNumber?.match(/.{1,4}/g)?.join(' ') || ''}
-              onChange={(e) => formatCardNumber(e)}
-              type='text'
-              maxLength={23}
-              required
-            />
-          </Col>
-        </Row>
+        <FormInput
+          labelText={'Card Number'}
+          nameProp={'card_number'}
+          valueProp={cardNumber?.match(/.{1,4}/g)?.join(' ') || ''}
+          onChangeProp={(e) => formatCardNumber(e)}
+          typeProp={'text'}
+          maxLengthProp={23}
+        />
 
-        <Row>
-          <Col>
-            <Label>
-              Expiration Date
-            </Label>
-            <Input
-              name='expiration_date'
-              placeholder='mm/yy'
-              value={expDate}
-              onChange={(e) => formatExpDate(e)}
-              type='text'
-              required
-            />
-          </Col>
-        </Row>
+        <FormInput
+          labelText={'Expiration Date'}
+          nameProp={'expiration_date'}
+          placeHolderProp={'mm/yy'}
+          valueProp={expDate}
+          onChangeProp={(e) => formatExpDate(e)}
+          typeProp={'text'}
+          maxLengthProp={5}
+        />
 
-        <Row>
-          <Col>
-            <Label>
-              Security Number
-            </Label>
-            <InputGroup>
-              <Input
-                name='security_number'
-                value={cvv || ''}
-                onChange={(e) => formatCvvNumber(e)}
-                maxLength={cvvLength}
-                type={cvvIsVisible}
-                required
-              />
-              <Button
-                onClick={() => makeVisible()}
-                color='secondary'
-              >
-              </Button>
-            </InputGroup>
-          </Col>
-        </Row>
+        <CustomInputGroup
+          labelText={'Security Number'}
+          nameProp={'security_number'}
+          valueProp={cvv || ''}
+          onChangeProp={(e) => formatCvvNumber(e)}
+          typeProp={cvvIsVisible}
+          maxLengthProp={cvvLength}
+          onClickProp={() => makeVisible()}
+        />
 
-        <Row>
-          <Col>
-            <Label>
-              Card Holder
-            </Label>
-            <Input
-              name='card_holder'
-              value={cardHolder || ''}
-              onChange={(e) => formatCardHolder(e)}
-              type='text'
-              required
-            />
-          </Col>
-        </Row>
+        <FormInput
+          labelText={'Card Holder'}
+          nameProp={'card_holder'}
+          valueProp={cardHolder || ''}
+          onChangeProp={(e) => formatCardHolder(e)}
+          typeProp={'text'}
+        />
 
         <Row>
           <Col className='form-button'>
