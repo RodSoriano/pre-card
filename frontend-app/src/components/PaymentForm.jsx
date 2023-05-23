@@ -27,7 +27,7 @@ const PaymentForm = () => {
 
   const charactersOnly = (input) => {
     const { value } = input.target
-    const inputValue = value.replace(/[^a-z]\s/gi, '')
+    const inputValue = value.replace(/[^a-z ]/gi, '')
 
     return inputValue
   }
@@ -57,7 +57,10 @@ const PaymentForm = () => {
     setCvv(inputValue)
 
     switch (cardFirstNumbers) {
-      case '34' || '37':
+      case '34':
+        setCvvLength(4)
+        break;
+      case '37':
         setCvvLength(4)
         break;
       default:
