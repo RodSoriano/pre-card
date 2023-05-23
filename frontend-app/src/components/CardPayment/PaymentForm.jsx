@@ -5,7 +5,7 @@ import FormInput from './resources/FormInput'
 import CustomInputGroup from './resources/CustomInputGroup'
 import CustomAlert from './resources/CustomAlert'
 import { colors, message } from './resources/alertOptions'
-import {colors as buttonColor, message as buttonMessage} from './resources/buttonOptions'
+import { colors as buttonColor, message as buttonMessage } from './resources/buttonOptions'
 import { Button, Col, Form, Row } from 'reactstrap'
 
 const PaymentForm = () => {
