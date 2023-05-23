@@ -31,7 +31,7 @@ class CreateCardPaymentRequest extends FormRequest
                 if (!$this->expirationDateValidate()) {
                     $validator->errors()->add(
                         'expiration_date',
-                        'The expiration date field must be a date in the future.'
+                        'The expiration date field must be a date in the future or a valid date.'
                     );
                 }
             }
@@ -70,8 +70,8 @@ class CreateCardPaymentRequest extends FormRequest
         [$inputMonth, $inputYear] = explode('/', $this->expiration_date, 2);
         $isValid = true;
 
-        if ($month > 12) {
-            $isValid = false;
+        if ($inputMonth > 12) {
+          $isValid = false;
         }
 
         if ($inputYear < $year) {
