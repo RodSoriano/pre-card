@@ -8,9 +8,9 @@ import { Button, Col, Form, Input, Label, Row, InputGroup } from 'reactstrap'
 const PaymentForm = () => {
   const [status, setStatus] = useState(false)
 
-  const [cvvIsVisible, setCvvIsVisible] = useState('password')
   const [cvv, setCvv] = useState('')
   const [cvvLength, setCvvLength] = useState(3)
+  const [cvvIsVisible, setCvvIsVisible] = useState('password')
 
   const [cardNumber, setCardNumber] = useState('')
   const [expDate, setExpDate] = useState('')
@@ -65,11 +65,14 @@ const PaymentForm = () => {
     }
   }
 
-  const makeVisible = (e) => {
-    if (cvvIsVisible === 'password') {
-      setCvvIsVisible('text')
-    } else {
-      setCvvIsVisible('password')
+  const makeVisible = () => {
+    switch (cvvIsVisible) {
+      case 'password':
+        setCvvIsVisible('text')
+        break;
+      default:
+        setCvvIsVisible('password')
+        break;
     }
   }
 
@@ -152,14 +155,21 @@ const PaymentForm = () => {
             <Label>
               Security Number
             </Label>
-            <Input
-              name='security_number'
-              value={cvv || ''}
-              onChange={(e) => formatCvvNumber(e)}
-              maxLength={cvvLength}
-              type={cvvIsVisible}
-              required
-            />
+            <InputGroup>
+              <Input
+                name='security_number'
+                value={cvv || ''}
+                onChange={(e) => formatCvvNumber(e)}
+                maxLength={cvvLength}
+                type={cvvIsVisible}
+                required
+              />
+              <Button
+                onClick={() => makeVisible()}
+                color='secondary'
+              >
+              </Button>
+            </InputGroup>
           </Col>
         </Row>
 
@@ -187,15 +197,6 @@ const PaymentForm = () => {
             </Button>
           </Col>
         </Row>
-
-        <br />
-
-        <InputGroup>
-          <Input />
-          <Button
-            onClick={() => makeVisible()}
-          />
-        </InputGroup>
       </Form>
 
       {status && (
