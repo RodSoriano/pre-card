@@ -71,7 +71,7 @@ class CreateCardPaymentRequest extends FormRequest
         $isValid = true;
 
         if ($inputMonth > 12) {
-            $isValid = false;
+          $isValid = false;
         }
 
         if ($inputYear < $year) {
