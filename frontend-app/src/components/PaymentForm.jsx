@@ -3,17 +3,28 @@ import axios from 'axios'
 import { useState } from 'react'
 import CustomAlert from './CustomAlert'
 import { colors, message } from './alertOptions'
-import { Button, Col, Form, Input, Label, Row } from 'reactstrap'
+import { Button, Col, Form, Input, Label, Row, InputGroup } from 'reactstrap'
 
 const PaymentForm = () => {
   const [status, setStatus] = useState(false)
-  const [expDate, setExpDate] = useState('')
   const [cardNumber, setCardNumber] = useState('')
+  const [expDate, setExpDate] = useState('')
+  const [cvvIsVisible, setCvvIsVisible] = useState('password')
+  const [cvv, setCvv] = useState('')
+  const [cvvLength, setCvvLength] = useState(3)
+  const [cardHolder, setCardHolder] = useState('')
   const localHost = 'http://www.localhost:8000'
 
   const numbersOnly = (e) => {
     const { value } = e.target
     const inputValue = value.replace(/[^0-9]/g, '')
+
+    return inputValue
+  }
+
+  const charactersOnly = (e) => {
+    const { value } = e.target
+    const inputValue = value.replace(/[^a-z]\s/gi, '')
 
     return inputValue
   }
@@ -36,15 +47,43 @@ const PaymentForm = () => {
     }
   }
 
+  const formatCvvNumber = (e) => {
+    const inputValue = numbersOnly(e)
+    const cardFirstNumbers = cardNumber.slice(0, 2)
 
-  const handleOnSubmitt = async (formData) => {
-    formData.preventDefault()
+    setCvv(inputValue)
+
+    switch (cardFirstNumbers) {
+      case '34' || '37':
+        setCvvLength(4)
+        break;
+      default:
+        setCvvLength(3)
+    }
+  }
+
+  const makeVisible = (e) => {
+    if (cvvIsVisible === 'password') {
+      setCvvIsVisible('text')
+    } else {
+      setCvvIsVisible('password')
+    }
+  }
+
+  const formatCardHolder = (e) => {
+    const inputValue = charactersOnly(e)
+
+    setCardHolder(inputValue)
+  }
+
+  const handleOnSubmitt = async (form) => {
+    form.preventDefault()
 
     const dataToSend = {
       "card_number": cardNumber,
       "expiration_date": expDate,
-      "security_number": formData.target.security_number.value,
-      "card_holder": formData.target.card_holder.value
+      "security_number": cvv,
+      "card_holder": cardHolder
     }
 
     try {
@@ -112,8 +151,11 @@ const PaymentForm = () => {
             </Label>
             <Input
               name='security_number'
-              type='password'
-              required maxLength={4}
+              value={cvv || ''}
+              onChange={(e) => formatCvvNumber(e)}
+              maxLength={cvvLength}
+              type={cvvIsVisible}
+              required
             />
           </Col>
         </Row>
@@ -125,6 +167,8 @@ const PaymentForm = () => {
             </Label>
             <Input
               name='card_holder'
+              value={cardHolder || ''}
+              onChange={(e) => formatCardHolder(e)}
               type='text'
               required
             />
@@ -140,6 +184,15 @@ const PaymentForm = () => {
             </Button>
           </Col>
         </Row>
+
+        <br />
+
+        <InputGroup>
+          <Input />
+          <Button
+            onClick={() => makeVisible()}
+          />
+        </InputGroup>
       </Form>
 
       {status && (
