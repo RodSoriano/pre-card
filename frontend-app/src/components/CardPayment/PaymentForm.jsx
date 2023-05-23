@@ -5,6 +5,7 @@ import FormInput from './resources/FormInput'
 import CustomInputGroup from './resources/CustomInputGroup'
 import CustomAlert from './resources/CustomAlert'
 import { colors, message } from './resources/alertOptions'
+import {colors as buttonColor, message as buttonMessage} from './resources/buttonOptions'
 import { Button, Col, Form, Row } from 'reactstrap'
 
 const PaymentForm = () => {
@@ -13,7 +14,6 @@ const PaymentForm = () => {
   const [cvv, setCvv] = useState('')
   const [cvvLength, setCvvLength] = useState(3)
   const [cvvIsVisible, setCvvIsVisible] = useState('password')
-
   const [cardNumber, setCardNumber] = useState('')
   const [expDate, setExpDate] = useState('')
   const [cardHolder, setCardHolder] = useState('')
@@ -79,6 +79,15 @@ const PaymentForm = () => {
       default:
         setCvvIsVisible('password')
         break;
+    }
+  }
+
+  const buttonStatus = () => {
+    const isVisible = cvvIsVisible === 'password'
+
+    return {
+      color: isVisible ? buttonColor.primary : buttonColor.secondary,
+      message: isVisible ? buttonMessage.show : buttonMessage.hide
     }
   }
 
@@ -151,6 +160,7 @@ const PaymentForm = () => {
           typeProp={cvvIsVisible}
           maxLengthProp={cvvLength}
           onClickProp={() => makeVisible()}
+          buttonProp={buttonStatus()}
         />
 
         <FormInput
