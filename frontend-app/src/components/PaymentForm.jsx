@@ -7,23 +7,26 @@ import { Button, Col, Form, Input, Label, Row, InputGroup } from 'reactstrap'
 
 const PaymentForm = () => {
   const [status, setStatus] = useState(false)
-  const [cardNumber, setCardNumber] = useState('')
-  const [expDate, setExpDate] = useState('')
+
   const [cvvIsVisible, setCvvIsVisible] = useState('password')
   const [cvv, setCvv] = useState('')
   const [cvvLength, setCvvLength] = useState(3)
+
+  const [cardNumber, setCardNumber] = useState('')
+  const [expDate, setExpDate] = useState('')
   const [cardHolder, setCardHolder] = useState('')
+
   const localHost = 'http://www.localhost:8000'
 
-  const numbersOnly = (e) => {
-    const { value } = e.target
+  const numbersOnly = (input) => {
+    const { value } = input.target
     const inputValue = value.replace(/[^0-9]/g, '')
 
     return inputValue
   }
 
-  const charactersOnly = (e) => {
-    const { value } = e.target
+  const charactersOnly = (input) => {
+    const { value } = input.target
     const inputValue = value.replace(/[^a-z]\s/gi, '')
 
     return inputValue
