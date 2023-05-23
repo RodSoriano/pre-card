@@ -8,7 +8,7 @@ const CustomInputGroup = ({
   typeProp,
   maxLengthProp,
   onClickProp,
-  colorProp
+  buttonProp
 }) => {
   return (
     <Row>
@@ -27,8 +27,9 @@ const CustomInputGroup = ({
           />
           <Button
             onClick={onClickProp}
-            color={colorProp}
+            color={buttonProp.color}
           >
+            {buttonProp.message}
           </Button>
         </InputGroup>
       </Col>
