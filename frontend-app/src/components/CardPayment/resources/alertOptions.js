@@ -4,6 +4,6 @@ export const colors = {
 }
 
 export const message = {
-  success: 'Your information was entered correctly.',
+  success: "Your information was enter correctly. You can close this page now.",
   error: 'The information submitted was incorrect, try again.'
 }
