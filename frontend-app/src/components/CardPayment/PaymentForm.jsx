@@ -1,10 +1,10 @@
 import './styles.css'
 import axios from 'axios'
 import { useState } from 'react'
-import FormInput from './Payment/FormInput'
-import CustomInputGroup from './Payment/CustomInputGroup'
-import CustomAlert from './Payment/CustomAlert'
-import { colors, message } from './Payment/alertOptions'
+import FormInput from './resources/FormInput'
+import CustomInputGroup from './resources/CustomInputGroup'
+import CustomAlert from './resources/CustomAlert'
+import { colors, message } from './resources/alertOptions'
 import { Button, Col, Form, Row } from 'reactstrap'
 
 const PaymentForm = () => {
