@@ -1,4 +1,4 @@
-# Validation Test
+# Validation Service
 This is a project designed as a two-part system consisting of the back-end API and the front-end APP. The application is a tool for you to validate different types of input of a credit card sent by the end-user.
 
 The API has a single POST endpoint.
