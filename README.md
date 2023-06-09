@@ -1,4 +1,4 @@
-# Validation Test
+# Validation Service
 This is a project designed as a two-part system consisting of the back-end API and the front-end APP. The application is a tool for you to validate different types of input of a credit card sent by the end-user.
 
 The API has a single POST endpoint.
@@ -23,7 +23,11 @@ Keep in mind that in order to run a Laravel application, you will also need to i
 sudo apt install openssl php-bcmath php-curl php-json php-mbstring php-mysql php-tokenizer php-xml php-zip
 ```
 
-New PHP versions come with some extensions integrated within the core package. If you encounter any errors during the project installation, such as "missing extension," please check your "php.ini" configuration file. In the "php.ini" file, search for the keyword "extension" and look for the extensions you need. Uncomment them, and you will be ready to proceed. If you are using Windows, another option is to download the DLL file from the official PHP website. [Here](https://www.php.net/manual/en/zip.installation.php) you can find instructions with more details for installation (As an example, we are installing the "zip" extension).
+New PHP versions come with some extensions integrated within the core package. If you encounter any errors during the project installation, such as "missing extension," please check your "php.ini" configuration file.
+
+In the "php.ini" file, search for the keyword "extension" and look for the extensions you need. Uncomment them, and you will be ready to proceed.
+
+If you are using Windows, another option is to download the DLL file from the official PHP website. [Here](https://www.php.net/manual/en/zip.installation.php) you can find instructions with more details for installation (As an example, we are installing the "zip" extension).
 
 For the Front-End you also need:
 * npm 9.6^
@@ -79,3 +83,5 @@ npm run dev
 Our front-end is now running on http://localhost:5173
 
 Now you can try the application.
+
+If you find any errors or would like to suggest improvements, please feel free to contact me.
